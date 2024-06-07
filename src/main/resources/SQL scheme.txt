@@ -1,0 +1,26 @@
+DROP SCHEMA IF EXISTS personas;
+CREATE SCHEMA personas;
+USE personas;
+
+CREATE TABLE personas (
+  id                    SMALLINT PRIMARY KEY AUTO_INCREMENT,
+  nombre                VARCHAR(100)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+CREATE TABLE telefonos (
+	id         			SMALLINT,
+	numero              VARCHAR(20),
+	idPersona           SMALLINT,
+	PRIMARY KEY(id),
+	FOREIGN KEY(idPersona) REFERENCES personas(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+INSERT INTO personas VALUES(1,'Juan');
+INSERT INTO personas VALUES(2,'Ana');
+INSERT INTO personas VALUES(3,'Luis');
+
+INSERT INTO telefonos VALUES(201,'111000001',1);
+INSERT INTO telefonos VALUES(202,'111000002',1);
+INSERT INTO telefonos VALUES(203,'111000003',1);
+INSERT INTO telefonos VALUES(204,'111000004',2);
+INSERT INTO telefonos VALUES(205,'111000005',3);
